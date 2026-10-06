@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>소개팅 시뮬레이션</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💌</text></svg>">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <div id="toast" class="toast" hidden></div>
+
+  <!-- 시작 화면 -->
+  <main id="view-home" class="view" hidden>
+    <header class="hero">
+      <div class="hero-emoji">💌</div>
+      <h1>소개팅 시뮬레이션</h1>
+      <p>그녀의 이야기에 가장 마음을 움직이는 대답을 해보세요.</p>
+    </header>
+
+    <section class="card" id="card-join">
+      <h2>참가자로 입장</h2>
+      <form id="form-join">
+        <label>방 코드<input id="join-code" maxlength="5" autocomplete="off" autocapitalize="characters" required></label>
+        <label>닉네임<input id="join-name" maxlength="20" autocomplete="off" required></label>
+        <button class="btn primary">입장하기</button>
+      </form>
+    </section>
+
+    <section class="card" id="card-create">
+      <h2>호스트로 방 만들기</h2>
+      <form id="form-create">
+        <label>호스트(그녀) 이름<input id="create-name" maxlength="20" placeholder="예: 지민" autocomplete="off" required></label>
+        <button class="btn">방 만들기</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- 진행 화면 -->
+  <main id="view-game" class="view game" hidden>
+    <header class="topbar">
+      <div class="topbar-text">
+        <div class="title"><span id="host-name"></span>님과의 소개팅</div>
+        <div class="sub">방 코드 <b id="room-code"></b> · <span id="role-label"></span></div>
+      </div>
+      <div class="actions">
+        <button id="btn-copy" class="btn small" type="button">링크 복사</button>
+        <button id="btn-end" class="btn small danger" type="button" hidden>종료</button>
+      </div>
+    </header>
+    <div id="scores" class="scores"></div>
+    <section id="log" class="log"></section>
+    <footer class="composer">
+      <div id="composer-hint" class="hint"></div>
+      <form id="form-send" class="send">
+        <textarea id="send-text" rows="2" maxlength="300"></textarea>
+        <button id="send-btn" class="btn primary">보내기</button>
+      </form>
+    </footer>
+  </main>
+
+  <!-- 결과 화면 -->
+  <main id="view-result" class="view" hidden>
+    <header class="hero">
+      <div class="hero-emoji">💘</div>
+      <h1 id="result-title"></h1>
+      <p id="result-sub"></p>
+    </header>
+    <ol id="ranking" class="ranking"></ol>
+    <button id="btn-home" class="btn wide" type="button">처음으로</button>
+  </main>
+</body>
+</html>
