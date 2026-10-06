@@ -135,7 +135,8 @@ form .btn, .btn.wide { width: 100%; }
   font-size: 13px; color: var(--text); word-break: break-all;
 }
 
-.msg { margin-top: 8px; }
+.msg { margin-top: 8px; display: flex; align-items: flex-start; gap: 8px; }
+.msg-body { flex: 1; min-width: 0; }
 .who { font-size: 12px; color: var(--muted); margin: 0 0 4px 6px; }
 .bubble {
   display: inline-block;
@@ -150,6 +151,7 @@ form .btn, .btn.wide { width: 100%; }
 }
 
 .answers { margin-left: 16px; display: flex; flex-direction: column; gap: 6px; }
+.has-photo .answers { margin-left: 44px; }
 .meta { font-size: 12px; color: var(--muted); padding-left: 2px; }
 .answer {
   display: flex; align-items: flex-start; gap: 10px;
@@ -195,6 +197,38 @@ form .btn, .btn.wide { width: 100%; }
 .win-line .q { color: var(--muted); }
 .win-line .q::before { content: "Q. "; }
 .win-line .a::before { content: "A. "; color: var(--accent); font-weight: 700; }
+
+/* 호스트 프로필 사진 (가로 사진에서 얼굴 부분만 동그랗게) */
+.avatar {
+  display: none;
+  flex-shrink: 0;
+  width: 36px; height: 36px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--accent-weak) var(--host-photo) 50% 6% / 300% auto no-repeat;
+  cursor: zoom-in;
+}
+.has-photo .avatar { display: block; }
+.has-photo .hero-emoji { display: none; }
+.avatar.sm { width: 40px; height: 40px; }
+.avatar.xl {
+  width: 120px; height: 120px;
+  margin: 0 auto 12px;
+  border: 3px solid var(--surface);
+  box-shadow: 0 0 0 2px var(--accent), var(--shadow);
+}
+.topbar .avatar { margin-right: -2px; }
+.topbar-text { flex: 1; }
+
+.lightbox {
+  position: fixed; inset: 0; z-index: 20;
+  display: flex; align-items: center; justify-content: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, .8);
+  cursor: zoom-out;
+}
+.lightbox img { max-width: 100%; max-height: 100%; border-radius: 12px; }
 
 .toast {
   position: fixed; left: 50%; bottom: 96px; transform: translateX(-50%);

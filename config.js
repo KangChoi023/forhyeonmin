@@ -3,3 +3,6 @@
 // (service_role / secret 키는 절대 넣지 마세요)
 export const SUPABASE_URL = 'https://yqvgncxdemksrktgordv.supabase.co';
 export const SUPABASE_ANON_KEY = 'sb_publishable_yJUnK3Vkr8lO4M-Pj_eDXw_sANhY_Wa';
+
+// 호스트 프로필 사진 (비워두면 사진 없이 표시)
+export const HOST_PHOTO = 'assets/host.webp';

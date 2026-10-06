@@ -10,11 +10,13 @@
 </head>
 <body>
   <div id="toast" class="toast" hidden></div>
+  <div id="lightbox" class="lightbox" hidden><img id="lightbox-img" alt="호스트 프로필 사진"></div>
 
   <!-- 시작 화면 -->
   <main id="view-home" class="view" hidden>
     <header class="hero">
       <div class="hero-emoji">💌</div>
+      <button class="avatar xl" type="button" aria-label="프로필 사진 크게 보기"></button>
       <h1>소개팅 시뮬레이션</h1>
       <p>그녀의 이야기에 가장 마음을 움직이는 대답을 해보세요.</p>
     </header>
@@ -40,6 +42,7 @@
   <!-- 진행 화면 -->
   <main id="view-game" class="view game" hidden>
     <header class="topbar">
+      <button class="avatar sm" type="button" aria-label="프로필 사진 크게 보기"></button>
       <div class="topbar-text">
         <div class="title"><span id="host-name"></span>님과의 소개팅</div>
         <div class="sub">방 코드 <b id="room-code"></b> · <span id="role-label"></span></div>
@@ -64,6 +67,7 @@
   <main id="view-result" class="view" hidden>
     <header class="hero">
       <div class="hero-emoji">💘</div>
+      <button class="avatar xl" type="button" aria-label="프로필 사진 크게 보기"></button>
       <h1 id="result-title"></h1>
       <p id="result-sub"></p>
     </header>
