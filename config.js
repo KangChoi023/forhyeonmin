@@ -1,5 +1,8 @@
 // Supabase 대시보드 > Project Settings > API 에서 복사해 넣으세요.
 // anon(또는 publishable) 키는 브라우저에 공개되는 용도라 깃허브에 올려도 괜찮습니다.
 // (service_role / secret 키는 절대 넣지 마세요)
-export const SUPABASE_URL = 'https://YOUR-PROJECT.supabase.co';
-export const SUPABASE_ANON_KEY = 'YOUR-ANON-KEY';
+export const SUPABASE_URL = 'https://yqvgncxdemksrktgordv.supabase.co';
+export const SUPABASE_ANON_KEY = 'sb_publishable_yJUnK3Vkr8lO4M-Pj_eDXw_sANhY_Wa';
+
+// 호스트 프로필 사진 (비워두면 사진 없이 표시)
+export const HOST_PHOTO = 'assets/host.webp';

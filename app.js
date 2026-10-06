@@ -1,5 +1,8 @@
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
-import { SUPABASE_URL, SUPABASE_ANON_KEY } from './config.js';
+import * as config from './config.js';
+
+const { SUPABASE_URL, SUPABASE_ANON_KEY } = config;
+const HOST_PHOTO = config.HOST_PHOTO ?? '';
 
 const $ = (id) => document.getElementById(id);
 const configured = !SUPABASE_URL.includes('YOUR') && !SUPABASE_ANON_KEY.includes('YOUR');
@@ -225,8 +228,11 @@ function roundHtml(r) {
   const ans = S.answers.filter((a) => a.round_id === r.id);
   let html = `
     <div class="msg">
-      <div class="who">${esc(S.room.host_name)}</div>
-      <div class="bubble">${esc(r.question)}</div>
+      <button class="avatar" type="button" aria-label="프로필 사진 크게 보기"></button>
+      <div class="msg-body">
+        <div class="who">${esc(S.room.host_name)}</div>
+        <div class="bubble">${esc(r.question)}</div>
+      </div>
     </div>`;
 
   if (r.status === 'open') {
@@ -416,8 +422,24 @@ $('btn-end').addEventListener('click', async () => {
 
 $('btn-home').addEventListener('click', () => { location.href = location.pathname; });
 
+// 프로필 사진: 아무 아바타나 누르면 크게 보기
+document.addEventListener('click', (e) => {
+  if (e.target.closest('.avatar')) {
+    const img = $('lightbox-img');
+    if (!img.naturalWidth) img.src = `${HOST_PHOTO}${img.src ? `?r=${Date.now()}` : ''}`;
+    $('lightbox').hidden = false;
+  } else if (e.target.closest('#lightbox')) {
+    $('lightbox').hidden = true;
+  }
+});
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') $('lightbox').hidden = true; });
+
 // ───────── 시작 ─────────
 function init() {
+  if (HOST_PHOTO) {
+    document.documentElement.style.setProperty('--host-photo', `url("${HOST_PHOTO}")`);
+    document.body.classList.add('has-photo');
+  }
   if (!configured) {
     show('home');
     toast('config.js에 Supabase 주소와 키를 넣어주세요', 0);
